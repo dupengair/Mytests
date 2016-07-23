@@ -18,7 +18,7 @@ struct MGraph {
 } ;
 
 
-void MiniSpanTree_Prim(MGraph G) {
+void MiniSpanTree_Prim(MGraph& G) {
     int min, i, j, k;
     int adjvex[MAXVEX];
     int lowcost[MAXVEX];
