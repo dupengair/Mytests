@@ -84,6 +84,22 @@ GraphAdjList* CreateALGraph(TGraphMap& g)
 }
 
 
+void DestroyALGraph(GraphAdjList *GL) 
+{
+    for(const auto& a: GL->adjList) {
+        EdgeNode *e = a.firstedge;
+        printf("delete vertex: ");
+        while(e) {
+            printf("%d, ", e->adjvex);
+            EdgeNode *n = e;
+            e = e->next;  
+            delete n;
+        }
+        printf("\n");
+    }
+}
+
+
 int TopologicalSort(GraphAdjList *GL)
 {
     EdgeNode *e;
@@ -125,18 +141,24 @@ int TopologicalSort(GraphAdjList *GL)
             vector<int> a(stack, stack+GL->numVertexes);
             for_each(a.begin(), a.end(), [](int e){ printf("%d ", e); }); 
             printf("\n");
-
-            printf("\nthe topology: ");    
-            vector<int> b(result, result+GL->numVertexes);
-            for_each(b.begin(), b.end(), [](int e){ printf("%d ", e); }); 
-            printf("\n");
         }
     }
+
+    {
+        printf("\nthe topology: ");    
+        vector<int> b(result, result+GL->numVertexes);
+        for_each(b.begin(), b.end(), [](int e){ printf("%d ", e); }); 
+        printf("\n");
+    }
+            
 
     if(count < GL->numVertexes)
         printf("the graph has ring!\n");
 
-    delete[]  stack;
+    delete[] stack;
+    delete[] result;
+    DestroyALGraph(GL);
+    
     return 0;
 }
 
