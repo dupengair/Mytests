@@ -1,7 +1,7 @@
 #include <string>
 #include <string.h>
 
-#include "test_kmp.h"
+#include "test_timer.h"
 
 using std::string;
 
