@@ -38,6 +38,14 @@ void NormalBuble(TList *l)
 				swap(l, j, j+1);
 }
 
+void NormalBuble2(TList *l)
+{
+	int i, j;
+	for(i=1; i<l->length; i++)
+		for(j=1; j<l->length+2-i; j++)
+			if(l->r[j] < l->r[j-1])
+				swap(l, j, j-1);
+}
 int main()
 {
 	TList l;
@@ -56,6 +64,11 @@ int main()
 	PrintList(&l, "original list: ");
 	NormalBuble(&l);
 	PrintList(&l, "normal bubble: ");	
+
+	InitList(&l, a);
+	PrintList(&l, "original list: ");
+	NormalBuble2(&l);
+	PrintList(&l, "normal bubble2: ");	
 }
 
 
