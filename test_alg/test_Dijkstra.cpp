@@ -21,6 +21,17 @@ struct MGraph {
 typedef int PathMatrix[MAXVEX];
 typedef int ShortPathTable[MAXVEX];
 
+
+void GetPath(PathMatrix& P, int e)
+{
+	printf("the shortest path v0 -> v%d: v%d", e, e);
+	int m = e;
+	do {
+		m = P[m];
+		printf(" <- v%d", m);
+	} while(m != 0);
+}
+
 void ShortestPath_Dijkstra(MGraph& G, int v0) 
 {
     int v, w, k, min;
@@ -38,7 +49,7 @@ void ShortestPath_Dijkstra(MGraph& G, int v0)
     D[v0] = 0;
     final[v0] = 1;
     
-    for (v = 0; v < G.numVertexes; v++) {
+    for (v = 1; v < G.numVertexes; v++) {
         printf("round -> %d, D: ", v);
         for(auto v: D) { printf("%d ", v); };
         printf(", P: ");
@@ -72,8 +83,9 @@ void ShortestPath_Dijkstra(MGraph& G, int v0)
     printf("\nfinal: ");
     for(auto v: final) { printf("%d ", v); }
     printf("\n");
+	GetPath(P, 8);
+    printf("\n");
 }
-
 
 
 int main()
